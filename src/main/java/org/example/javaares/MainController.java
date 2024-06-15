@@ -20,7 +20,7 @@ public class MainController {
 
     @GetMapping("/testing")
     public String testing(@RequestParam String ico) {
-        Optional<Subject> subject = service.search(ico);
+        Optional<Subject> subject = service.getSubject(ico);
         if (subject.isPresent()) {
             return subject.get().toString();
         }

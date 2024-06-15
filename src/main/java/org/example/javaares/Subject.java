@@ -1,45 +1,46 @@
 package org.example.javaares;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
+import org.json.JSONObject;
 
 @Entity
 public class Subject {
 
     @Id
     public Long id;
-    public String name;
-    public String street;
-    public String streetNumber;
-    public String city;
-    public String country;
-    public String postalCode;
     public String ico;
+    public String name;
+    public String country;
+    public String address;
     public String dic;
 
     // No-argument constructor
     public Subject() {
     }
 
-    // Constructor with arguments
-    public Subject(Long id, String name, String street, String streetNumber, String city, String country, String postalCode, String ico, String dic) {
+    public Subject(Long id, String name, String country, String address, String ico, String dic) {
         this.id = id;
         this.name = name;
-        this.street = street;
-        this.streetNumber = streetNumber;
-        this.city = city;
         this.country = country;
-        this.postalCode = postalCode;
+        this.address = address;
         this.ico = ico;
         this.dic = dic;
     }
-    
+
+    public Subject(JSONObject json) {
+        this.id = -1L;
+        this.ico = json.optString("ico");
+        this.name = json.optString("obchodniJmeno");
+        JSONObject sidlo = json.optJSONObject("sidlo");
+        this.country = sidlo.optString("kodStatu");
+        this.address = sidlo.optString("textovaAdresa");
+        this.dic = json.optString("dic");
+    }
+
+    @Override
     public String toString() {
-        return name + "\n" + street + "\n" + streetNumber + "\n" + city + "\n" + country + "\n" + postalCode + "\n" + dic;
+        return id + " " + name + " " + country + " " + address + " " + ico + " " + dic;
     }
 
 }
