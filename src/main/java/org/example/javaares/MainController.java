@@ -20,8 +20,7 @@ public class MainController {
 
 
     /**
-     * Main controller of the app
-     *
+     * Main map of the app
      * @param ico ico of the subject
      * @return String representation of the subject if found, "Not found" otherwise
      */
@@ -38,6 +37,12 @@ public class MainController {
     }
 
 
+    /**
+     * Validates the ico parameter
+     * accepts even non-8-digit ico, as it will be padded with zeros as per definition
+     * @param ico ico to be validated
+     * @return true if the ico is valid, false otherwise
+     * */
     private boolean isIcoValid(String ico) {
         StringBuilder icoBuilder = new StringBuilder(ico);
         while (icoBuilder.length() < 8) {

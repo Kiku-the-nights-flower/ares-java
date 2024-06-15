@@ -23,7 +23,6 @@ public class MainService {
      * Searches the database for a subject with the given ico
      * @param ico ico of the subject
      * @return Optional of the subject if found, empty Optional otherwise
-     * TODO convert to do database search instead of in-memory search
      * */
     public Optional<Subject> search(String ico) {
         return subjectRepository.findById(ico);
@@ -32,7 +31,6 @@ public class MainService {
     /**
      * Adds the subject to the database
      * @param subject subject to be added
-     * TODO convert to do database add instead of in-memory add
      * */
     public void addSubject(Subject subject) {
         subjectRepository.save(subject);
