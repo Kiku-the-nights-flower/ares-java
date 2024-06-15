@@ -3,7 +3,10 @@ package org.example.javaares;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 public class MainController {
@@ -16,8 +19,12 @@ public class MainController {
     }
 
     @GetMapping("/testing")
-    public String testing() {
-        return service.test();
+    public String testing(@RequestParam String ico) {
+        Optional<Subject> subject = service.search(ico);
+        if (subject.isPresent()) {
+            return subject.get().toString();
+        }
+        return "Not found";
     }
 
 }

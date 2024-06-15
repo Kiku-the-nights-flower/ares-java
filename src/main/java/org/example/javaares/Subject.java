@@ -18,6 +18,7 @@ public class Subject {
     public String city;
     public String country;
     public String postalCode;
+    public String ico;
     public String dic;
 
     // No-argument constructor
@@ -25,7 +26,7 @@ public class Subject {
     }
 
     // Constructor with arguments
-    public Subject(Long id, String name, String street, String streetNumber, String city, String country, String postalCode, String dic) {
+    public Subject(Long id, String name, String street, String streetNumber, String city, String country, String postalCode, String ico, String dic) {
         this.id = id;
         this.name = name;
         this.street = street;
@@ -33,9 +34,12 @@ public class Subject {
         this.city = city;
         this.country = country;
         this.postalCode = postalCode;
+        this.ico = ico;
         this.dic = dic;
     }
-
-    // Getters and setters
+    
+    public String toString() {
+        return name + "\n" + street + "\n" + streetNumber + "\n" + city + "\n" + country + "\n" + postalCode + "\n" + dic;
+    }
 
 }
