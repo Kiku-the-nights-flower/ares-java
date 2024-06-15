@@ -8,7 +8,6 @@ import org.json.JSONObject;
 public class Subject {
 
     @Id
-    public Long id;
     public String ico;
     public String name;
     public String country;
@@ -19,20 +18,10 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(Long id, String name, String country, String address, String ico, String dic) {
-        this.id = id;
-        this.name = name;
-        this.country = country;
-        this.address = address;
-        this.ico = ico;
-        this.dic = dic;
-    }
-
     /**
      * Constructor converting JSON object to Subject
      * */
     public Subject(JSONObject json) {
-        this.id = -1L;
         this.ico = json.optString("ico");
         this.name = json.optString("obchodniJmeno");
         JSONObject sidlo = json.optJSONObject("sidlo");
@@ -43,7 +32,7 @@ public class Subject {
 
     @Override
     public String toString() {
-        return "id: " + id + "\nname: " + name + "\ncountry: " + country + "\naddress: " + address + "\nico: " + ico + "\ndic: " + dic + "\n";
+        return "name: " + name + "\ncountry: " + country + "\naddress: " + address + "\nico: " + ico + "\ndic: " + dic + "\n";
     }
 
 }

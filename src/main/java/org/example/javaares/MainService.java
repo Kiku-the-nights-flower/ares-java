@@ -8,27 +8,15 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.Optional;
 import org.json.JSONObject;
 
 @Service
 public class MainService {
+    private final SubjectRepository subjectRepository;
 
-    // Temporary in-memory database
-    ArrayList<Subject> subjects = new ArrayList<>();
-
-    public MainService() {
-        initializeTestData();
-    }
-
-    /**
-     * Temporary method to add test data to the "database"
-     * */
-    private void initializeTestData() {
-        subjects.add(new Subject(1L, "Google", "USA", "Mountain View", "123456", "CZ123456"));
-        subjects.add(new Subject(2L, "Microsoft", "USA", "Redmond", "654321", "CZ654321"));
-        subjects.add(new Subject(3L, "Apple", "USA", "Cupertino", "987654", "CZ987654"));
+    public MainService(SubjectRepository subjectRepository) {
+        this.subjectRepository = subjectRepository;
     }
 
     /**
@@ -38,7 +26,7 @@ public class MainService {
      * TODO convert to do database search instead of in-memory search
      * */
     public Optional<Subject> search(String ico) {
-        return subjects.stream().filter(subject -> subject.ico.equals(ico)).findFirst();
+        return subjectRepository.findById(ico);
     }
 
     /**
@@ -47,7 +35,7 @@ public class MainService {
      * TODO convert to do database add instead of in-memory add
      * */
     public void addSubject(Subject subject) {
-        subjects.add(subject);
+        subjectRepository.save(subject);
     }
 
     /**
@@ -62,6 +50,7 @@ public class MainService {
         Optional<Subject> subject = search(ico);
 
         if (subject.isPresent()) {
+            System.out.println("Found in database");
             return subject;
         }
 
