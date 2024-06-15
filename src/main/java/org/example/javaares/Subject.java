@@ -28,6 +28,9 @@ public class Subject {
         this.dic = dic;
     }
 
+    /**
+     * Constructor converting JSON object to Subject
+     * */
     public Subject(JSONObject json) {
         this.id = -1L;
         this.ico = json.optString("ico");
@@ -35,12 +38,12 @@ public class Subject {
         JSONObject sidlo = json.optJSONObject("sidlo");
         this.country = sidlo.optString("kodStatu");
         this.address = sidlo.optString("textovaAdresa");
-        this.dic = json.optString("dic");
+        this.dic = json.optString("dic", "(Chybí)");
     }
 
     @Override
     public String toString() {
-        return id + " " + name + " " + country + " " + address + " " + ico + " " + dic;
+        return "id: " + id + "\nname: " + name + "\ncountry: " + country + "\naddress: " + address + "\nico: " + ico + "\ndic: " + dic + "\n";
     }
 
 }

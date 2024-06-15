@@ -18,7 +18,13 @@ public class MainController {
         this.service = ser;
     }
 
-    @GetMapping("/testing")
+
+    /**
+     * Main controller of the app
+     * @param ico ico of the subject
+     * @return String representation of the subject if found, "Not found" otherwise
+     * */
+    @GetMapping("/")
     public String testing(@RequestParam String ico) {
         Optional<Subject> subject = service.getSubject(ico);
         if (subject.isPresent()) {
